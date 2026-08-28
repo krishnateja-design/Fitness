@@ -4,6 +4,9 @@ import { WelcomePanel } from "./sections/welcome-panel";
 import { SummaryCards } from "./sections/summary-cards";
 import { TodayWorkout } from "./sections/today-workout";
 import { TodayDiet } from "./sections/today-diet";
+import {UpcomingSession} from "./sections/upcoming-session";
+import {WeeklyProgress} from "./sections/weekly-progress";
+import {MeasurementsOverview} from "./sections/measurements-overview";
 
 const mockMember = {
   name: "Krishna",
@@ -21,6 +24,9 @@ export default function MemberDashboardPage() {
           <SummaryCards />
           <TodayWorkout />
           <TodayDiet />
+          <UpcomingSession />
+          <WeeklyProgress />
+          <MeasurementsOverview />
         </main>
       </div>
     </div>
