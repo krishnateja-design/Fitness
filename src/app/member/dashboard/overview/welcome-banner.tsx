@@ -1,8 +1,8 @@
-type WelcomePanelProps = {
+type WelcomeBannerProps = {
   memberName: string;
 };
 
-export function WelcomePanel({ memberName }: WelcomePanelProps) {
+export function WelcomeBanner({ memberName }: WelcomeBannerProps) {
   return (
     <section className="relative isolate overflow-hidden rounded-3xl bg-slate-950 px-6 py-10 shadow-[0_24px_60px_rgba(15,23,42,0.14)] sm:px-10 sm:py-12 lg:px-12 lg:py-14">
       <div className="absolute -right-20 -top-24 -z-10 size-80 rounded-full border-[44px] border-lime-400/[0.08]" />

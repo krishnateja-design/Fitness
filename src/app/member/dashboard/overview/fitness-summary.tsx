@@ -21,7 +21,7 @@ const summaryItems = [
   },
 ];
 
-export function SummaryCards() {
+export function FitnessSummary() {
   return (
     <section className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {summaryItems.map((item) => (

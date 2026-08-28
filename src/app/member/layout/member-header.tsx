@@ -1,20 +1,26 @@
-import { BellIcon, ChevronIcon } from "./dashboard-icons";
-import { MobileNavigation } from "./dashboard-sidebar";
+import { BellIcon, ChevronIcon } from "./member-navigation-icons";
+import { MobileNavigation } from "./member-sidebar";
 
-type DashboardHeaderProps = {
+type MemberHeaderProps = {
   memberName: string;
+  title?: string;
+  subtitle?: string;
 };
 
-export function DashboardHeader({ memberName }: DashboardHeaderProps) {
+export function MemberHeader({
+  memberName,
+  title = "Member Dashboard",
+  subtitle = `Welcome back, ${memberName}`,
+}: MemberHeaderProps) {
   return (
     <header className="sticky top-0 z-20 flex h-20 items-center justify-between border-b border-slate-200/80 bg-white/90 px-4 backdrop-blur-xl sm:px-6 lg:px-8">
       <div className="flex min-w-0 items-center gap-3">
         <MobileNavigation />
         <div className="min-w-0">
           <h1 className="truncate text-lg font-bold tracking-tight text-slate-950 sm:text-xl">
-            Member Dashboard
+            {title}
           </h1>
-          <p className="hidden text-xs text-slate-500 sm:block">Welcome back, {memberName}</p>
+          <p className="hidden text-xs text-slate-500 sm:block">{subtitle}</p>
         </div>
       </div>
 

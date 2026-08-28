@@ -1,22 +1,29 @@
-import { DashboardIcon, type IconName } from "./dashboard-icons";
+"use client";
 
-const navigationItems: { label: string; icon: IconName; active?: boolean }[] = [
-  { label: "Dashboard", icon: "dashboard", active: true },
-  { label: "Workouts", icon: "workouts" },
-  { label: "Diet Plan", icon: "diet" },
-  { label: "Progress", icon: "progress" },
-  { label: "Measurements", icon: "measurements" },
-  { label: "Gyms", icon: "gyms" },
-  { label: "Trainers", icon: "trainers" },
-  { label: "Bookings", icon: "bookings" },
-  { label: "Profile", icon: "profile" },
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  NavigationIcon,
+  type NavigationIconName,
+} from "./member-navigation-icons";
+
+const navigationItems: { label: string; icon: NavigationIconName; href: string }[] = [
+  { label: "Dashboard", icon: "dashboard", href: "/member/dashboard" },
+  { label: "Workouts", icon: "workouts", href: "/member/workouts" },
+  { label: "Diet Plan", icon: "diet", href: "/member/diet-plan" },
+  { label: "Progress", icon: "progress", href: "/member/progress" },
+  { label: "Measurements", icon: "measurements", href: "/member/measurements" },
+  { label: "Gyms", icon: "gyms", href: "/member/gyms" },
+  { label: "Trainers", icon: "trainers", href: "/member/trainers" },
+  { label: "Bookings", icon: "bookings", href: "/member/bookings" },
+  { label: "Profile", icon: "profile", href: "/member/profile" },
 ];
 
 function Brand() {
   return (
     <div className="flex h-20 items-center gap-3 px-7">
       <div className="grid size-10 place-items-center rounded-xl bg-lime-400 text-slate-950 shadow-[0_0_24px_rgba(163,230,53,0.2)]">
-        <DashboardIcon name="workouts" className="size-6" />
+        <NavigationIcon name="workouts" className="size-6" />
       </div>
       <div>
         <p className="text-lg font-extrabold tracking-tight text-white">
@@ -32,32 +39,40 @@ function Brand() {
 }
 
 function Navigation() {
+  const pathname = usePathname();
+
   return (
     <nav aria-label="Member navigation" className="flex min-h-0 flex-1 flex-col">
       <div className="flex-1 space-y-1 overflow-y-auto px-4 py-4">
         <p className="mb-3 px-3 text-[10px] font-bold uppercase tracking-[0.22em] text-slate-600">
           Main menu
         </p>
-        {navigationItems.map((item) => (
-          <a
-            key={item.label}
-            href="#"
-            aria-current={item.active ? "page" : undefined}
-            className={`group flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-medium transition-colors ${
-              item.active
-                ? "bg-lime-400 text-slate-950 shadow-[0_8px_30px_rgba(163,230,53,0.14)]"
-                : "text-slate-400 hover:bg-white/[0.06] hover:text-white"
-            }`}
-          >
-            <DashboardIcon
-              name={item.icon}
-              className={`size-5 shrink-0 ${
-                item.active ? "text-slate-950" : "text-slate-500 group-hover:text-lime-400"
+        {navigationItems.map((item) => {
+          const isActive = pathname === item.href;
+
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={isActive ? "page" : undefined}
+              className={`group flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-medium transition-colors ${
+                isActive
+                  ? "bg-lime-400 text-slate-950 shadow-[0_8px_30px_rgba(163,230,53,0.14)]"
+                  : "text-slate-400 hover:bg-white/[0.06] hover:text-white"
               }`}
-            />
-            {item.label}
-          </a>
-        ))}
+            >
+              <NavigationIcon
+                name={item.icon}
+                className={`size-5 shrink-0 ${
+                  isActive
+                    ? "text-slate-950"
+                    : "text-slate-500 group-hover:text-lime-400"
+                }`}
+              />
+              {item.label}
+            </Link>
+          );
+        })}
       </div>
 
       <div className="border-t border-white/[0.07] p-4">
@@ -65,7 +80,7 @@ function Navigation() {
           href="#"
           className="group flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-medium text-slate-400 transition-colors hover:bg-rose-400/10 hover:text-rose-300"
         >
-          <DashboardIcon name="logout" className="size-5 text-slate-500 group-hover:text-rose-300" />
+          <NavigationIcon name="logout" className="size-5 text-slate-500 group-hover:text-rose-300" />
           Logout
         </a>
       </div>
@@ -73,7 +88,7 @@ function Navigation() {
   );
 }
 
-export function DashboardSidebar() {
+export function MemberSidebar() {
   return (
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-white/[0.06] bg-slate-950 lg:flex">
       <Brand />

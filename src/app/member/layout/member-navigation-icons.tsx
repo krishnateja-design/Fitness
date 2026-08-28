@@ -1,6 +1,6 @@
 import type { ReactNode, SVGProps } from "react";
 
-export type IconName =
+export type NavigationIconName =
   | "dashboard"
   | "workouts"
   | "diet"
@@ -12,7 +12,7 @@ export type IconName =
   | "profile"
   | "logout";
 
-const paths: Record<IconName, ReactNode> = {
+const paths: Record<NavigationIconName, ReactNode> = {
   dashboard: (
     <>
       <rect x="3" y="3" width="7" height="7" rx="2" />
@@ -74,10 +74,10 @@ const paths: Record<IconName, ReactNode> = {
   ),
 };
 
-export function DashboardIcon({
+export function NavigationIcon({
   name,
   ...props
-}: SVGProps<SVGSVGElement> & { name: IconName }) {
+}: SVGProps<SVGSVGElement> & { name: NavigationIconName }) {
   return (
     <svg
       aria-hidden="true"
@@ -108,22 +108,6 @@ export function BellIcon(props: SVGProps<SVGSVGElement>) {
     >
       <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
       <path d="M10 21h4" />
-    </svg>
-  );
-}
-
-export function MenuIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      aria-hidden="true"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      {...props}
-    >
-      <path d="M4 7h16M4 12h16M4 17h16" />
     </svg>
   );
 }
